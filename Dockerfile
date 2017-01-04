@@ -7,6 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # Install Java 8 JRE and curl.
 RUN apt-get update && \
 	apt-get install -y unzip && \
+	apt-get install -y wget && \
     apt-get install -y software-properties-common && \
     add-apt-repository -y ppa:openjdk-r/ppa && \
     apt-get update && \
