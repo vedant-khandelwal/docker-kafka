@@ -6,6 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Install Java 8 JRE and curl.
 RUN apt-get update && \
+	apt-get install -y unzip && \
     apt-get install -y software-properties-common && \
     add-apt-repository -y ppa:openjdk-r/ppa && \
     apt-get update && \
@@ -16,6 +17,12 @@ RUN apt-get update && \
 cp start.sh /
 
 #install kafka
+RUN wget -O confluent.zip http://packages.confluent.io/archive/3.1/confluent-oss-3.1.1-2.11.zip && \
+	unzip confluent.zip && \
+	mkdir /opt/falkonry && \
+	mkdir /opt/falkonry/confluent
+
+cp -rf confluent-3.1.1/* /opt/falkonry/confluent/
 
 
 ENTRYPOINT ["/start.sh"]
