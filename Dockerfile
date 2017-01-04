@@ -25,5 +25,6 @@ RUN wget -O confluent.zip http://packages.confluent.io/archive/3.1/confluent-oss
 	rm -rf confluent.zip && \
 	cp -rf confluent-3.1.1/* /opt/falkonry/confluent/
 
+EXPOSE 2181 9092 8081 8082
 
 ENTRYPOINT ["/start.sh"]
