@@ -1,17 +1,18 @@
 #!/bin/bash
 
 cd /opt/falkonry/confluent
+mkdir -p /tmp/kafka-logs
 
 #starting zookeeper
-./bin/zookeeper-server-start etc/kafka/zookeeper.properties &
+./bin/zookeeper-server-start etc/kafka/zookeeper.properties &> /tmp/kafka-logs/zookeeper.log &
 sleep 30s
 
 #starting kafka server
-./bin/kafka-server-start etc/kafka/server.properties &
+./bin/kafka-server-start etc/kafka/server.properties &> /tmp/kafka-logs/kafka.log &
 sleep 30s
 
 #starting schema registry
-./bin/schema-registry-start etc/schema-registry/schema-registry.properties &
+./bin/schema-registry-start etc/schema-registry/schema-registry.properties &> /tmp/kafka-logs/schema-registry.log &
 sleep 30s
 
 #starting kafka rest server
