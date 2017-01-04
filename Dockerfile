@@ -14,16 +14,15 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-cp start.sh /
+COPY start.sh /
 
 #install kafka
 RUN wget -O confluent.zip http://packages.confluent.io/archive/3.1/confluent-oss-3.1.1-2.11.zip && \
 	unzip confluent.zip && \
 	mkdir /opt/falkonry && \
 	mkdir /opt/falkonry/confluent && \
-	rm -rf confluent.zip
-
-cp -rf confluent-3.1.1/* /opt/falkonry/confluent/
+	rm -rf confluent.zip && \
+	cp -rf confluent-3.1.1/* /opt/falkonry/confluent/
 
 
 ENTRYPOINT ["/start.sh"]
